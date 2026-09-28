@@ -45,6 +45,26 @@ internal class Program
 
 
 
+        DeliveryAddress address1 =
+            new DeliveryAddress("Cairo", "Tahrir Street", 15);
+
+        DeliveryAddress address2 = address1;
+
+        // before the modyfying
+        Console.WriteLine("Address 1: " + address1.GetFullAddress());
+        Console.WriteLine("Address 2: " + address2.GetFullAddress());
+        Console.WriteLine("-----------------------------------------");
+        address2.City = "Giza";
+        address2.Street = "Makram Ebeid Street";
+        address2.BuildingNumber = 20;
+
+        // after the modyfying
+        Console.WriteLine("Address 1: " + address1.GetFullAddress());
+        Console.WriteLine("Address 2: " + address2.GetFullAddress());
+
+
+
+
 
 
 
