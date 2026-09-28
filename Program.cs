@@ -45,23 +45,125 @@ internal class Program
 
 
 
+        DeliveryAddress address01 =
+            new DeliveryAddress("Cairo", "Tahrir Street", 15);
+
+        DeliveryAddress address02 = address01;
+
+        // before the modyfying
+        Console.WriteLine("Address 1: " + address01.GetFullAddress());
+        Console.WriteLine("Address 2: " + address02.GetFullAddress());
+        Console.WriteLine("-----------------------------------------");
+        address02.City = "Giza";
+        address02.Street = "Makram Ebeid Street";
+        address02.BuildingNumber = 20;
+
+        // after the modyfying
+        Console.WriteLine("Address 1: " + address01.GetFullAddress());
+        Console.WriteLine("Address 2: " + address02.GetFullAddress());
+
+
+
+        Console.WriteLine("--------------------------------------------------------------");
+
+
+        DeliveryCenter center = new DeliveryCenter();
+
+        // Read 3 shipments
+        for (int i = 0 ; i < 3 ; i++)
+        {
+            Console.WriteLine("# Enter Shipment " + (i + 1));
+
+            Console.Write("Tracking Code: ");
+            string trackingCode = Console.ReadLine();
+
+            Console.Write("Description: ");
+            string description = Console.ReadLine();
+
+            Console.Write("Weight: ");
+            double weight = double.Parse(Console.ReadLine());
+
+            Console.Write("Delivery Fee: ");
+            decimal deliveryFee = decimal.Parse(Console.ReadLine());
+
+            Console.Write("City: ");
+            string city = Console.ReadLine();
+
+            Console.Write("Street: ");
+            string street = Console.ReadLine();
+
+            Console.Write("Building Number: ");
+            int buildingNumber = int.Parse(Console.ReadLine());
+
+
+            DeliveryAddress address =
+                new DeliveryAddress(city, street, buildingNumber);
+
+            Shipment shipment =
+                new Shipment(
+                    trackingCode,
+                    description,
+                    weight,
+                    deliveryFee,
+                    address
+                );
+
+
+
+            if (center.AddShipment(shipment))
+            {
+                Console.WriteLine("Shipment added successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Shipment not added.");
+            }
+
+            Console.WriteLine();
+        }
+
+        // Print all shipments 
+        Console.WriteLine("--- Shipments ---");
+
+        for (int i = 0; i < 3; i++)
+        {
+            center[i].PrintShipment();
+            Console.WriteLine();
+        }
+
+        // Search by tracking code
+        Console.Write("Enter a tracking code to search: ");
+        string searchCode = Console.ReadLine();
+
+        Shipment found_Shipment = center[searchCode];
+
+        if (!string.IsNullOrEmpty(found_Shipment.TrackingCode))
+        {
+            Console.WriteLine(
+                "Shipment found: " + found_Shipment.TrackingCode + " - " + found_Shipment.Description
+            );
+        }
+        else
+        {
+            Console.WriteLine("Shipment not found.");
+        }
+
+        // Demonstrate DeliveryAddress struct copy
+        Console.WriteLine();
+        Console.WriteLine("--- Struct Copy ---");
+
         DeliveryAddress address1 =
             new DeliveryAddress("Cairo", "Tahrir Street", 15);
 
         DeliveryAddress address2 = address1;
 
-        // before the modyfying
-        Console.WriteLine("Address 1: " + address1.GetFullAddress());
-        Console.WriteLine("Address 2: " + address2.GetFullAddress());
-        Console.WriteLine("-----------------------------------------");
-        address2.City = "Giza";
+        address2.City = "Cairo";
         address2.Street = "Makram Ebeid Street";
         address2.BuildingNumber = 20;
 
-        // after the modyfying
-        Console.WriteLine("Address 1: " + address1.GetFullAddress());
-        Console.WriteLine("Address 2: " + address2.GetFullAddress());
+        Console.WriteLine("Original Address: " + address1.GetFullAddress());
 
+        Console.WriteLine("Copied Address: " + address2.GetFullAddress() );
 
 
 

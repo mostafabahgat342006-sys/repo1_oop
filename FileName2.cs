@@ -86,21 +86,21 @@ public struct Shipment
 
     public Shipment(string trackingCode)
     {
-        trackingCode = trackingCode;
-        description = "Unknown";
-        weight = 1;
-        deliveryFee = 50;
-        Destination = default;
+        this.trackingCode = trackingCode;
+        this.description = "Unknown";
+        this.weight = 1;
+        this.deliveryFee = 50;
+        this.Destination = default;
     }
 
     public Shipment(string trackingCode, string description, double weight,
-                decimal deliveryFee, DeliveryAddress destination)
+            decimal deliveryFee, DeliveryAddress destination)
     {
-        trackingCode = trackingCode;
-        description = description;
-        weight = weight;
-        deliveryFee = deliveryFee;
-        Destination = destination;
+        this.trackingCode = trackingCode;
+        this.description = description;
+        this.weight = weight;
+        this.deliveryFee = deliveryFee;
+        this.Destination = destination;
     }
 
     public void UpdateDeliveryFee(decimal new_Fee)
